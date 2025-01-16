@@ -1,5 +1,7 @@
 # Expense Tracker
 
+## u can see changes now
+
 ## Introduction
 
 This is a command-line based expense tracking application. It allows you to create budget categories, deposit and withdraw amounts, and visualize spending in a simple chart.
