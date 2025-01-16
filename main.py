@@ -2,7 +2,7 @@ from expenseTracker import Category, create_spend_chart
 from os import system , name 
 
 def clear():
-
+    system('pause')
     if name == 'nt':
         _ = system('cls')
 
