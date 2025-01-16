@@ -1,9 +1,20 @@
 from expenseTracker import Category, create_spend_chart
+from os import system , name 
+
+def clear():
+
+    if name == 'nt':
+        _ = system('cls')
+
+    else:
+        _ = system('clear')
+
 
 def main():
     categories = {}
 
     while True:
+        clear()
         print("\nExpense Tracker Menu:")
         print("1. Create a new category")
         print("2. Deposit to a category")
