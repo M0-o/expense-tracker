@@ -68,7 +68,7 @@ def create_spend_chart(categories):
 
     total = sum([category.get_spent() for category in categories])
 
-
+   
     chart= "Percentage spent by category\n"
 
     for i in range(100,-10,-10):

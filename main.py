@@ -1,5 +1,8 @@
 from expenseTracker import Category, create_spend_chart
 from os import system , name 
+from colorama import init, Fore, Style
+
+init()
 
 def clear():
     if name == 'nt':
@@ -14,7 +17,7 @@ def main():
 
     while True:
         clear()
-        print("\nExpense Tracker Menu:")
+        print(Fore.CYAN + Style.BRIGHT + "\nExpense Tracker Menu:" + Style.RESET_ALL)
         print("1. Create a new category")
         print("2. Deposit to a category")
         print("3. Withdraw from a category")
@@ -29,7 +32,7 @@ def main():
             cat_name = input("Enter the category name: ")
             if cat_name not in categories:
                 categories[cat_name] = Category(cat_name)
-                print(f"Category '{cat_name}' created.")
+                print(Fore.GREEN + f"Category '{cat_name}' created." + Style.RESET_ALL)
             else:
                 print("Category already exists.")
 
@@ -47,7 +50,7 @@ def main():
                     amount = float(input("Enter amount: "))
                     desc = input("Enter description: ")
                     categories[cat_name].deposit(amount, desc)
-                    print("Deposit completed.")
+                    print(Fore.GREEN + "Deposit completed." + Style.RESET_ALL)
                 else:
                     print("Invalid choice.")
 
@@ -65,7 +68,7 @@ def main():
                     amount = float(input("Enter amount: "))
                     desc = input("Enter description: ")
                     if categories[cat_name].withdraw(amount, desc):
-                        print("Withdrawal successful.")
+                        print(Fore.GREEN + "Withdrawal successful." + Style.RESET_ALL)
                     else:
                         print("Insufficient funds.")
                 else:
@@ -98,7 +101,7 @@ def main():
 
                 amount = float(input("Enter amount: "))
                 if categories[from_cat].transfer(amount, categories[to_cat]):
-                    print("Transfer completed.")
+                    print(Fore.GREEN + "Transfer completed." + Style.RESET_ALL)
                 else:
                     print("Insufficient funds.")
 
@@ -113,22 +116,26 @@ def main():
                 sel = int(input("Enter choice: ")) - 1
                 if 0 <= sel < len(cat_list):
                     cat_name = cat_list[sel]
-                    print(categories[cat_name])
+                    print(Fore.YELLOW + str(categories[cat_name]) + Style.RESET_ALL)
                 else:
                     print("Invalid choice.")
 
         elif choice == "6":
             if categories:
-                print(create_spend_chart(list(categories.values())))
+                try:
+                    print(Fore.MAGENTA + create_spend_chart(list(categories.values())) + Style.RESET_ALL)
+                except:
+                    print("No spendings yet")
             else:
                 print("No categories to display.")
 
         elif choice == "7":
-            print("Exiting...")
+            print(Fore.RED + "Exiting..." + Style.RESET_ALL)
             break
         else:
-            print("Invalid choice.")
+            print(Fore.RED + "Invalid choice." + Style.RESET_ALL)
         system('pause')
+        
 
 if __name__ == "__main__":
     main()
